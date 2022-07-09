@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
 import {AiFillStar} from"react-icons/ai";
 import {useSelector}from "react-redux";
-
+import LanguageContext from './../../context/language';
+import { useContext } from 'react';
 
 export default function Navbar() {
     const favourite = useSelector((state) => state.favorites);
     // console.log(favourite);
+    const { contextLang } = useContext(LanguageContext);
+
     return (
         <>
             <nav className="navbar navbar-expand-lg page">
@@ -33,6 +36,16 @@ export default function Navbar() {
                                     }}>Favotites  <AiFillStar className=" star1"/><span>{favourite.favorites.length}</span> </NavLink>  
                                    
                            
+                            </li>
+                            <li className="nav-item">
+                                <NavLink className=" nav-link " 
+                                style={{color:"white"}}
+                                 aria-current="page" to="/lang" 
+                                    activeStyle={{
+                                        fontWeight: "bold",
+                                        color: "red"
+                                    }}
+                                >Lang:{contextLang}</NavLink>
                             </li>
 
                         </ul>
